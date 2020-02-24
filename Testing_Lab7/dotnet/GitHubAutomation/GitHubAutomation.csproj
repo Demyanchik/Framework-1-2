@@ -154,19 +154,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Driver\DriverSingleton.cs" />
-    <Compile Include="Models\Way.cs" />
+    <Compile Include="Driver\Driver.cs" />
+    <Compile Include="Model\Data.cs" />
     <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="Pages\InputInformationPage.cs" />
-    <Compile Include="Pages\TakePlacePage.cs" />
-    <Compile Include="Pages\TrainsPage.cs" />
+    <Compile Include="Pages\InputPage.cs" />
+    <Compile Include="Pages\SignIn.cs" />
+    <Compile Include="Pages\TrainResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CreateWay.cs" />
-    <Compile Include="Services\Logger.cs" />
-    <Compile Include="Services\StationsReader.cs" />
-    <Compile Include="Services\PastDateReader.cs" />
-    <Compile Include="Services\PeopleReader.cs" />
-    <Compile Include="Tests\TestConfig.cs" />
+    <Compile Include="Util\Insert.cs" />
+    <Compile Include="Util\StandardConfig.cs" />
+    <Compile Include="Util\ToConfig.cs" />
+    <Compile Include="Util\FromConfig.cs" />
+    <Compile Include="Tests\InitializeTest.cs" />
     <Compile Include="Tests\TransportTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +175,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ConfigFiles\DateCheck.config" />
-    <None Include="ConfigFiles\People_number.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ConfigFiles\dev.config" />
+    <None Include="ConfigFiles\Standard.config" />
+    <None Include="ConfigFiles\WithoutTo.config" />
+    <None Include="ConfigFiles\WithoutFrom.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
