@@ -1,5 +1,4 @@
-﻿using GitHubAutomation.Services;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -8,11 +7,11 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace Framework.Driver
 {
-    class DriverSingleton
+    class Driver
     {
         private static IWebDriver driver;
 
-        private DriverSingleton() { }
+        private Driver() { }
 
         public static IWebDriver GetDriver()
         {
@@ -31,7 +30,6 @@ namespace Framework.Driver
                 }
                 driver.Manage().Window.Maximize();
             }
-            Logger.Log.Info("Create driver");
             return driver;
         }
 
@@ -39,7 +37,6 @@ namespace Framework.Driver
         {
             driver.Quit();
             driver = null;
-            Logger.Log.Info("Close driver");
         }
     }
 }

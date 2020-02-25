@@ -11,7 +11,6 @@ namespace Framework_1_2
 {
     public class TransportTest : InitializeTest
     {
-        string errorStyle = "rgba(255, 237, 238, 1)";
 
         [Test]
         public void FromIsEmpty()
@@ -19,7 +18,7 @@ namespace Framework_1_2
             InputPage InputPage = new HomePage(Browser)
                 .ToInputPage()
                 .InputInfo(Insert.GetInfoWithoutFrom());
-            Assert.AreEqual(errorStyle, InputPage.GetError(InputPage.From));
+            Assert.AreEqual(Errors.errorStyle, Errors.GetError(InputPage.From));
         }
 
         [Test]
@@ -28,7 +27,7 @@ namespace Framework_1_2
             InputPage InputPage = new HomePage(Browser)
                 .ToInputPage()
                 .InputInfo(Insert.GetInfoWithoutTo());
-            Assert.AreEqual(errorStyle, InputPage.GetError(InputPage.To));
+            Assert.AreEqual(Errors.errorStyle, Errors.GetError(InputPage.To));
 
         }
 
@@ -38,7 +37,7 @@ namespace Framework_1_2
             InputPage InputPage = new HomePage(Browser)
                 .ToInputPage()
                 .InputWithoutReturning(Insert.GetStandardInfo());
-            Assert.AreEqual(errorStyle, InputPage.GetError(InputPage.ReturnDate));
+            Assert.AreEqual(Errors.errorStyle, Errors.GetError(InputPage.ReturnDate));
 
         }
 
@@ -57,7 +56,7 @@ namespace Framework_1_2
                 .ToSignInPage()
                 .LoginWithoutInfo();
            
-            Assert.AreEqual(errorStyle, SingInPage.GetError(SingInPage.Email));
+            Assert.AreEqual(Errors.errorStyle, SingInPage.GetError(SingInPage.Email));
         }
 
         [Test]
@@ -66,7 +65,31 @@ namespace Framework_1_2
             Assert.IsTrue(new HomePage(Browser)
                 .ToInputPage()
                 .InputAndGoNext(Insert.GetStandardInfo())
-                .GetFirstTicket());
+                .CheckPage());
+        }
+
+        [Test]
+        public void InputWithoutFirstname()
+        {
+            TrainResults TrainsPage = new HomePage(Browser)
+                .ToInputPage()
+                .InputAndGoNext(Insert.GetStandardInfo())
+                .GetFirstTicket()
+                .InsertInfo(Insert.GetInfoWithoutFirstname());
+
+            Assert.AreEqual(Errors.errorStyle, Errors.GetError(TrainsPage.FirstName));
+        }
+
+        [Test]
+        public void InputWithoutTitle()
+        {
+            TrainResults TrainsPage = new HomePage(Browser)
+                .ToInputPage()
+                .InputAndGoNext(Insert.GetStandardInfo())
+                .GetFirstTicket()
+                .InsertInfo(Insert.GetInfoWithoutTitle());
+
+            Assert.AreEqual(Errors.errorStyle, Errors.GetError(TrainsPage.Title));
         }
     }
 }

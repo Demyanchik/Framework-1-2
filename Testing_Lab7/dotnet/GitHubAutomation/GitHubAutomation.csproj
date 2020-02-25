@@ -156,17 +156,18 @@
   <ItemGroup>
     <Compile Include="Driver\Driver.cs" />
     <Compile Include="Model\Data.cs" />
+    <Compile Include="Model\TicketInfo.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\InputPage.cs" />
     <Compile Include="Pages\SignIn.cs" />
     <Compile Include="Pages\TrainResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\Insert.cs" />
-    <Compile Include="Util\StandardConfig.cs" />
-    <Compile Include="Util\ToConfig.cs" />
-    <Compile Include="Util\FromConfig.cs" />
     <Compile Include="Tests\InitializeTest.cs" />
     <Compile Include="Tests\TransportTest.cs" />
+    <Compile Include="Util\Configs.cs" />
+    <Compile Include="Util\Errors.cs" />
+    <Compile Include="Util\Functions.cs" />
+    <Compile Include="Util\Insert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -176,8 +177,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ConfigFiles\Standard.config" />
-    <None Include="ConfigFiles\WithoutTo.config" />
+    <None Include="ConfigFiles\TicketInfo.config" />
+    <None Include="ConfigFiles\WithoutFirstname.config" />
     <None Include="ConfigFiles\WithoutFrom.config" />
+    <None Include="ConfigFiles\WithoutTitle.config" />
+    <None Include="ConfigFiles\WithoutTo.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

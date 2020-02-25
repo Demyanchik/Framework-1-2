@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Framework_1_2.Util;
 
 namespace Framework_1_2.Pages
 {
@@ -43,12 +44,6 @@ namespace Framework_1_2.Pages
 
         WebDriverWait wait;
 
-
-        public string GetError(IWebElement element)
-        {
-            return element.GetCssValue("background-color");
-        }
-
         public InputPage(IWebDriver browser)
         {
             Browser = browser;
@@ -67,12 +62,22 @@ namespace Framework_1_2.Pages
 
         public TrainResults InputAndGoNext(Data data)
         {
-            From.SendKeys(data.From);
-            To.SendKeys(data.To);
-            DepDate.Click();
-            DepDatePicker.Click();
-            Search.Click();
-            return new TrainResults(Browser);
+            try
+            {
+                From.SendKeys(data.From);
+                To.SendKeys(data.To);
+                DepDate.Click();
+                DepDatePicker.Click();
+                Search.Click();
+                Functions.WaitTillDisappear(Browser, Background);
+
+                return new TrainResults(Browser);
+            }
+            catch (OpenQA.Selenium.StaleElementReferenceException ex)
+            {
+                Functions.Wait(Browser);
+                return new TrainResults(Browser);
+            }
         }
 
         public bool InputNoneOfPeople(Data data)
@@ -88,7 +93,7 @@ namespace Framework_1_2.Pages
                 Adults.SendKeys(OpenQA.Selenium.Keys.NumberPad0);
 
                 Search.Click();
-                Wait();
+                Functions.WaitTillDisappear(Browser, Background);
             }
             catch (OpenQA.Selenium.UnhandledAlertException e)
             {
@@ -103,23 +108,11 @@ namespace Framework_1_2.Pages
             From.SendKeys(data.From);
             To.SendKeys(data.To);
             Return.Click();
-            Wait();
+            Functions.WaitTillDisappear(Browser, Background);
             DepDatePicker.Click();
 
             Search.Click();
             return this;
-        }
-
-        public void Wait()
-        {
-            while (true)
-            {
-                if (Background.GetCssValue("display") == "block")
-                    wait = new WebDriverWait(Browser, TimeSpan.FromSeconds(30));
-                else
-                    return;
-                
-            }
         }
 
     }

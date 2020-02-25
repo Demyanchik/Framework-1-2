@@ -28,7 +28,7 @@ namespace Framework.Driver
                         driver = new ChromeDriver();
                         break;
                 }
-                driver.Manage().Window.Maximize();
+                //driver.Manage().Window.Maximize();
             }
             return driver;
         }
